@@ -1,8 +1,13 @@
 const button = document.querySelector("button");
 const presure = document.querySelectorAll(".pColumn input");
+
+let gi = document.querySelector(".gpStart");
 const gpAll = document.querySelectorAll(".gpColumn input");
 
 let tablice = document.querySelectorAll(".wyniki");
+
+let intercept = document.querySelector(".intercept");
+let slope = document.querySelector(".slope");
 
 const c1 = document.querySelector("#c1").value;
 const c2 = document.querySelector("#c2").value;
@@ -124,6 +129,41 @@ const wykres = () => {
     }
   });
 };
+const tabSlice = () => {
+  tab1.splice(0, 1);
+  tab2.splice(0, 1);
+};
+const regress = () => {
+  let x = tab1.map(i => Number(i));
+  let y = tab2.map(i => Number(i));
+
+  const n = y.length;
+  let sx = 0;
+  let sy = 0;
+  let sxy = 0;
+  let sxx = 0;
+  let syy = 0;
+  for (let i = 0; i < n; i++) {
+    sx += x[i];
+    sy += y[i];
+    sxy += x[i] * y[i];
+    sxx += x[i] * x[i];
+    syy += y[i] * y[i];
+  }
+  const mx = sx / n;
+  const my = sy / n;
+  const yy = n * syy - sy * sy;
+  const xx = n * sxx - sx * sx;
+  const xy = n * sxy - sx * sy;
+  const slope = xy / xx;
+  const intercept = my - slope * mx;
+
+  intercept.textContent = intercept;
+
+  slope.textContent = slope;
+
+  return { slope, intercept };
+};
 
 const show = () => {
   addTo(gpAll, tab1);
@@ -134,6 +174,12 @@ const show = () => {
     tablice[i].textContent = tablicee[i];
   }
   wykres();
+  tabSlice();
+
+  regress();
+  let a = (intercept.textContent = `intercept = ${regress().intercept}`);
+  let b = (slope.textContent = `slope = ${regress().slope}`);
+  gi.textContent = -(regress().intercept / regress().slope);
 };
 
 button.addEventListener("click", show);

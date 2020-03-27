@@ -41,3 +41,12 @@
   height: 20px;
   background-color: red;
 }
+.wyniki {
+  margin: 10px;
+}
+
+.slope,
+.intercept {
+  /* min-height: 100px; */
+  margin: 15px;
+}
