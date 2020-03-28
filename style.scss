@@ -1,0 +1,124 @@
+$fontColor: rgb(255, 255, 255);
+$bgcColor: rgba(49, 45, 45, 0.329);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.all {
+  background-image: url("/gas-pump-1914310_1920.jpg");
+}
+label {
+  color: red;
+  padding-bottom: 10px;
+}
+
+input {
+  padding: 5px;
+  margin: 1px;
+  border-radius: 15px;
+  border: 1px solid lightblue;
+  background-color: lightgrey;
+  text-align: center;
+}
+
+.box {
+  display: flex;
+  .pColumn {
+    display: flex;
+    flex-direction: column;
+    max-width: 15%;
+    margin: 20px;
+  }
+  .gpColumn {
+    display: flex;
+    flex-direction: column;
+    max-width: 15%;
+    margin: 20px;
+  }
+  .u {
+    display: flex;
+    flex-direction: column;
+    max-width: 15%;
+    margin: 20px;
+  }
+}
+
+.temperature {
+  display: flex;
+  flex-direction: column;
+  max-width: 15%;
+  margin: 20px;
+}
+
+label[for="gpstart"] {
+  margin: 20px;
+}
+
+.gpStart {
+  display: flex;
+  flex-direction: column;
+  max-width: 15%;
+  margin: 30px;
+  padding: 10px;
+  color: red;
+  border: 1px solid black;
+  text-align: center;
+  label {
+    color: red;
+  }
+}
+
+button {
+  border: 2px solid black;
+  background-color: lightblue;
+  border-radius: 30px;
+  padding: 15px 20px;
+  margin: 30px;
+  font-size: 15px;
+
+  color: black;
+
+  transition: linear 0.3s;
+}
+
+.results {
+  background-color: $bgcColor;
+  width: 100%;
+  display: flex;
+
+  border: 1px solid $fontColor;
+  .wyniki {
+    display: flex;
+    flex-grow: 1;
+    /* width: 5%; */
+    margin: 10px;
+    display: block;
+    div {
+      color: $fontColor;
+      border-right: 1px solid $fontColor;
+      border-bottom: 1px solid $fontColor;
+      padding: 5px;
+    }
+  }
+}
+
+.slope,
+.intercept {
+  /* min-height: 100px; */
+  margin: 15px;
+  color: $fontColor;
+  background-color: $bgcColor;
+  width: 20%;
+  padding: 15px;
+}
+
+.wykre {
+  display: none;
+}

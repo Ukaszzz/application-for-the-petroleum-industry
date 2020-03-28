@@ -1,0 +1,162 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.all {
+  background-image: url("/gas-pump-1914310_1920.jpg");
+}
+
+label {
+  color: red;
+  padding-bottom: 10px;
+}
+
+input {
+  padding: 5px;
+  margin: 1px;
+  border-radius: 15px;
+  border: 1px solid lightblue;
+  background-color: lightgrey;
+  text-align: center;
+}
+
+.box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.box .pColumn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-width: 15%;
+  margin: 20px;
+}
+
+.box .gpColumn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-width: 15%;
+  margin: 20px;
+}
+
+.box .u {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-width: 15%;
+  margin: 20px;
+}
+
+.temperature {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-width: 15%;
+  margin: 20px;
+}
+
+label[for="gpstart"] {
+  margin: 20px;
+}
+
+.gpStart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-width: 15%;
+  margin: 30px;
+  padding: 10px;
+  color: red;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.gpStart label {
+  color: red;
+}
+
+button {
+  border: 2px solid black;
+  background-color: lightblue;
+  border-radius: 30px;
+  padding: 15px 20px;
+  margin: 30px;
+  font-size: 15px;
+  color: black;
+  -webkit-transition: linear 0.3s;
+  transition: linear 0.3s;
+}
+
+.results {
+  background-color: rgba(49, 45, 45, 0.329);
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid white;
+}
+
+.results .wyniki {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  /* width: 5%; */
+  margin: 10px;
+  display: block;
+}
+
+.results .wyniki div {
+  color: white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  padding: 5px;
+}
+
+.slope,
+.intercept {
+  /* min-height: 100px; */
+  margin: 15px;
+  color: white;
+  background-color: rgba(49, 45, 45, 0.329);
+  width: 20%;
+  padding: 15px;
+}
+
+.wykre {
+  display: none;
+}
+/*# sourceMappingURL=style.css.map */

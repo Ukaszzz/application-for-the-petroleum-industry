@@ -1,22 +1,21 @@
-const button = document.querySelector("button");
+const buttonOn = document.querySelector(".turnOn");
+const buttonOff = document.querySelector(".turnOff");
 const presure = document.querySelectorAll(".pColumn input");
+const temp = document.querySelector("#temperature").value;
+const wykres = document.querySelector(".wykre");
 
-let gi = document.querySelector(".gpStart");
 const gpAll = document.querySelectorAll(".gpColumn input");
-
 let tablice = document.querySelectorAll(".wyniki");
-
 let intercept = document.querySelector(".intercept");
 let slope = document.querySelector(".slope");
+let gi = document.querySelector(".gpStart");
 
 const c1 = document.querySelector("#c1").value;
 const c2 = document.querySelector("#c2").value;
 const c3 = document.querySelector("#c3").value;
 const co2 = document.querySelector("#co2").value;
 const n2 = document.querySelector("#n2").value;
-
-const temp = document.querySelector("#temperature").value;
-
+let table = [];
 let tab2 = [];
 let tab1 = [];
 
@@ -40,12 +39,17 @@ const pcAvg =
     c02Value.pcri * co2 +
     n2Value.pcri * n2) *
   Math.pow(10, 6);
-let tablicee = [[], [], [], [], [], [], [], [], [], [], [], [], [], []];
 
 const r = 8.3134;
 
 const a = (27 / 64) * ((r * r * tcAvg * tcAvg) / pcAvg);
 const b = (1 / 8) * ((r * tcAvg) / pcAvg);
+
+const createTable = () => {
+  for (let i = 0; i < presure.length; i++) {
+    table.push([]);
+  }
+};
 
 const addTo = (items, where) => {
   for (let i = 0; i < items.length; i++) {
@@ -59,38 +63,34 @@ const count = (el, tablicaN) => {
   tablicaN.push(A.toFixed(4));
   tablicaN.push(B.toFixed(4));
   tablicaN.push(1);
-  let cosss = tablicaN[2] / (tablicaN[2] - B) - A / tablicaN[2];
-  tablicaN.push(cosss.toFixed(4));
-  for (
-    let z = 1;
-    tablicaN[tablicaN.length - 2] - tablicaN[tablicaN.length - 1] > 0.0001;
-    z--
+  let cellValue = tablicaN[2] / (tablicaN[2] - B) - A / tablicaN[2];
+  tablicaN.push(cellValue.toFixed(4));
+  while (
+    tablicaN[tablicaN.length - 2] - tablicaN[tablicaN.length - 1] > 0.0001 ||
+    tablicaN.length < 8
   ) {
-    let cossss =
+    let cellValue =
       tablicaN[tablicaN.length - 1] / (tablicaN[tablicaN.length - 1] - B) -
       A / tablicaN[tablicaN.length - 1];
-    tablicaN.push(cossss.toFixed(4));
+    tablicaN.push(cellValue.toFixed(4));
   }
   const pz = el / Math.pow(10, 5) / tablicaN[tablicaN.length - 1];
   tablicaN.push(pz.toFixed(4));
   tab2.push(pz.toFixed(4));
 };
 
-const wykres = () => {
-  var ctx = document.getElementById("myChart").getContext("2d");
-  var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: "line",
+const graph = tab => {
+  let ctx = document.getElementById("myChart").getContext("2d");
 
-    // The data for our dataset
+  let chart = new Chart(ctx, {
+    type: "line",
     data: {
       labels: [...tab1],
       datasets: [
         {
           label: "gp pz",
-          // backgroundColor: "rgb(255, 99, 132)",
           borderColor: "rgb(255, 99, 132)",
-          data: [...tab2]
+          data: [...tab]
         }
       ]
     },
@@ -99,9 +99,6 @@ const wykres = () => {
       legend: {
         position: "bottom"
       },
-      // hover: {
-      //   mode: "label"
-      // },
       scales: {
         xAxes: [
           {
@@ -120,7 +117,7 @@ const wykres = () => {
               beginAtZero: true,
               steps: 1,
               stepValue: 1,
-              // max: 50,
+
               labelString: "ds"
             }
           }
@@ -165,21 +162,46 @@ const regress = () => {
   return { slope, intercept };
 };
 
+const reset = () => {
+  window.location.reload(true);
+};
+
 const show = () => {
+  createTable();
   addTo(gpAll, tab1);
 
   for (let i = 0; i < presure.length; i++) {
-    count(presure[i].value * Math.pow(10, 5), tablicee[i]);
+    count(presure[i].value * Math.pow(10, 5), table[i]);
+    let results = document.querySelector(".results");
+    newResult = document.createElement("div");
+    // newResult.innerHTML = `{<div></div>}`;
+    newResult.classList.add("wyniki");
+    results.appendChild(newResult);
 
-    tablice[i].textContent = tablicee[i];
+    // newResult.textContent = table[i];
+    for (let j = 0; j < table[i].length; j++) {
+      console.log("działas");
+      newP = document.createElement("div");
+      newP.innerHTML = ``;
+      newP.textContent = table[i][j];
+      newResult.appendChild(newP);
+    }
   }
-  wykres();
+  buttonOn.disabled = true;
+  buttonOff.disabled = false;
+  wykres.style.display = "block";
+  graph(tab2);
+
   tabSlice();
 
   regress();
-  let a = (intercept.textContent = `intercept = ${regress().intercept}`);
-  let b = (slope.textContent = `slope = ${regress().slope}`);
-  gi.textContent = -(regress().intercept / regress().slope);
+
+  let a = (intercept.textContent = `intercept = ${regress().intercept.toFixed(
+    3
+  )}`);
+  let b = (slope.textContent = `slope = ${regress().slope.toFixed(3)}`);
+  gi.textContent = -(regress().intercept / regress().slope).toFixed(3);
 };
 
-button.addEventListener("click", show);
+buttonOn.addEventListener("click", show);
+buttonOff.addEventListener("click", reset);
