@@ -11,7 +11,7 @@ body {
 }
 
 .all {
-  background-image: url("/gas-pump-1914310_1920.jpg");
+  background-image: url("/img/gas-pump-1914310_1920.jpg");
 }
 
 label {
@@ -154,9 +154,14 @@ button {
   background-color: rgba(49, 45, 45, 0.329);
   width: 20%;
   padding: 15px;
+  margin-bottom: 30px;
 }
 
 .wykre {
   display: none;
+}
+
+canvas {
+  padding-top: 20px;
 }
 /*# sourceMappingURL=style.css.map */
