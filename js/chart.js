@@ -2,20 +2,20 @@ var dps = []; //dataPoints.
 
 var chart = new CanvasJS.Chart("chartContainer", {
   title: {
-    text: ""
+    text: "",
   },
   axisX: {
-    title: "GP [mln Nm3]"
+    title: "GP [mln Nm3]",
   },
   axisY: {
-    title: "P/Z [MPa]"
+    title: "P/Z [MPa]",
   },
   data: [
     {
       type: "scatter",
-      dataPoints: dps
-    }
-  ]
+      dataPoints: dps,
+    },
+  ],
 });
 
 function addDataPointsAndRender() {
@@ -26,7 +26,7 @@ function addDataPointsAndRender() {
     yValue = Number(taby[i]);
     dps.push({
       x: xValue,
-      y: yValue
+      y: yValue,
     });
   }
 
@@ -66,7 +66,7 @@ function calculateTrendLine(chart) {
     yIntercept
   );
   var endPoint = getTrendLinePoint(
-    chart.data[0].dataPoints[dpsLength - 1].x,
+    chart.data[0].dataPoints[dpsLength - 1].x + 400,
     slope,
     yIntercept
   );
@@ -74,7 +74,7 @@ function calculateTrendLine(chart) {
   chart.addTo("data", {
     type: "line", //Line series showing trend
     markerSize: 0,
-    dataPoints: [startPoint, endPoint]
+    dataPoints: [startPoint, endPoint],
   });
 }
 
