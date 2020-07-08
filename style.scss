@@ -13,6 +13,7 @@ body {
 
 .all {
   background-image: url("../img//gas-pump-1914310_1920.jpg");
+  overflow: hidden;
 }
 label {
   color: red;
@@ -21,8 +22,8 @@ label {
 
 input {
   padding: 5px;
-  margin: 1px;
-  border-radius: 15px;
+  margin: 2px;
+  border-radius: 5px;
   border: 1px solid lightblue;
   background-color: lightgrey;
   text-align: center;
@@ -64,6 +65,7 @@ label[for="gpstart"] {
 .gpStart {
   display: flex;
   flex-direction: column;
+  min-width: 100px;
   max-width: 15%;
   margin: 30px;
   padding: 10px;
@@ -78,7 +80,7 @@ label[for="gpstart"] {
 button {
   border: 2px solid black;
   background-color: lightblue;
-  border-radius: 30px;
+
   padding: 15px 20px;
   margin: 30px;
   font-size: 15px;
@@ -115,6 +117,7 @@ button {
   margin: 15px;
   color: $fontColor;
   background-color: $bgcColor;
+  min-width: 150px;
   width: 20%;
   padding: 15px;
   margin-bottom: 30px;
